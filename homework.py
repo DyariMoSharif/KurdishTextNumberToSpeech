@@ -1,10 +1,10 @@
-dang={
-    '1':'yak.wav','2':'du.wav','3':'se.wav','4':'char.wav','5':'pench.wav','6':'shash.wav','7':'haft.wav','8':'hasht.wav',
-    '9':'no.wav','10':'da.wav','11':'yazda.wav','12':'dwazda.wav','13':'sezda.wav','14':'charda.wav','15':'pazda.wav',
-    '16':'shazda.wav','17':'havda.wav','18':'hajda.wav','19':'nozda.wav','20':'bist.wav','30':'si.wav','40':'chl.wav',
-    '50':'penjy.wav','60':'shest.wav','70':'hafte.wav','80':'hashte.wav','90':'nohat.wav','100':'sad.wav',
-    '1000':'hzar.wav','1000000':'mlyon.wav','w':'wu.wav'
-}
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jun  2 20:41:54 2021
+
+@author: Dyari M.shareef
+"""
+
 
 def thno(nav):
     naved=str(nav)
@@ -20,7 +20,8 @@ def thno(nav):
         if naved[2]!='0':
             res.append(naved[2])
         else:
-            res.pop()
+            if len(res)!=0:
+                res.pop()
             
     if naved[1]=='1':
         if naved[0]!='0':
@@ -32,12 +33,15 @@ def thno(nav):
     return res
 
 from playsound import playsound
-entered=572037
+
+entered=int(input()) #enter a number
+#entered=3
+
 if entered<1000000:
     entered=format(entered, '6d').replace(' ','0')
 elif entered==1000000:
-    playsound(dang['1'])
-    playsound(dang['1000000'])
+    playsound('1')
+    playsound('1000000')
 else:
     print('Tikaye, jimareke nabêt le yek milion ziyatir bêt')
     quit()
@@ -45,9 +49,23 @@ else:
 entered=str(entered)
 resAll=[]
 resAll+=thno(entered[0:3])
-resAll+=['1000','w']
+if len(resAll)!=0:
+    resAll+=['1000','w']
 resAll+=thno(entered[3:6])
 resAll
+
+resAll[0]
+if len(resAll)>4:
+    if (resAll[1]=='100') & (resAll[0]=='1'):
+        resAll[0]='none'
+if len(resAll)>4:
+    if (resAll[9]=='100')  & (resAll[8]=='1'):
+        resAll[8]='none'
+
+resAll = [i for i in resAll if i != 'none']
+
 for i in resAll:
-    playsound(dang[i])
+    outLoud=i+'.wav'
+    playsound(outLoud)
+
 resAll
